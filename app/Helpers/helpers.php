@@ -38,3 +38,13 @@ function gettotalnotificaton(){
         return count($data);
     }
 }
+
+function getnameabv($id){
+    $data = User::where('id',$id)->first();
+    if($data){
+        return substr($data->name, 0, 1);
+    }
+    else{
+        return '';
+    }  
+}

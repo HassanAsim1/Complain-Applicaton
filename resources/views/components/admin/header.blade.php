@@ -131,11 +131,11 @@
                                 <div class="media d-flex align-items-start">
                                     <div class="media-left">
                                         <div class="avatar bg-light-danger">
-                                            <div class="avatar-content">MD</div>
+                                            <div class="avatar-content">{{getnameabv($notify->developer_id)}}</div>
                                         </div>
                                     </div>
                                     <div class="media-body">
-                                        <p class="media-heading"><span class="font-weight-bolder">Revised Complaints </span>&nbsp;checkout</p><small class="notification-text"> MD Inc. order updated</small>
+                                        <p class="media-heading"><span class="font-weight-bolder">Revised Complaints <img width="25" height="25" src="https://img.icons8.com/color/48/complaint.png" alt="complaint"/></span>&nbsp;</p><small class="notification-text"> Complaint # : {{$notify->complain_no}} /  Status : <span class="badge badge-info">{{$notify->categories}}</span></small>
                                     </div>
                                 </div>
                             </a>
