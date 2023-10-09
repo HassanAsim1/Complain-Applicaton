@@ -126,8 +126,9 @@
                             </div>
                         </li>
                         <li class="scrollable-container media-list"><a class="d-flex" href="javascript:void(0)">
-                            @if(count(getnotification()) > 0)<a class="d-flex" href="javascript:void(0)">
+                            @if(count(getnotification()) > 0)
                                 @foreach(getnotification() as $notify)
+                                <a class="d-flex" href="{{url('view-complain-details?id='.$notify->complain_no.'&notifyid='.$notify->id.'')}}">
                                 <div class="media d-flex align-items-start">
                                     <div class="media-left">
                                         <div class="avatar bg-light-danger">
@@ -141,14 +142,15 @@
                             </a>
                             @endforeach
                             @endif
-                            <div class="media d-flex align-items-center">
+                            <!-- <div class="media d-flex align-items-center">
                                 <h6 class="font-weight-bolder mr-auto mb-0">System Notifications</h6>
                                 <div class="custom-control custom-control-primary custom-switch">
                                     <input class="custom-control-input" id="systemNotification" type="checkbox" checked="">
                                     <label class="custom-control-label" for="systemNotification"></label>
                                 </div>
-                            </div><a class="d-flex" href="javascript:void(0)">
-                                <div class="media d-flex align-items-start">
+                            </div> -->
+                            <a class="d-flex" href="javascript:void(0)">
+                                <!-- <div class="media d-flex align-items-start">
                                     <div class="media-left">
                                         <div class="avatar bg-light-danger">
                                             <div class="avatar-content"><i class="avatar-icon" data-feather="x"></i></div>
@@ -157,9 +159,9 @@
                                     <div class="media-body">
                                         <p class="media-heading"><span class="font-weight-bolder">Server down</span>&nbsp;registered</p><small class="notification-text"> USA Server is down due to hight CPU usage</small>
                                     </div>
-                                </div>
+                                </div> -->
                             </a><a class="d-flex" href="javascript:void(0)">
-                                <div class="media d-flex align-items-start">
+                                <!-- <div class="media d-flex align-items-start">
                                     <div class="media-left">
                                         <div class="avatar bg-light-success">
                                             <div class="avatar-content"><i class="avatar-icon" data-feather="check"></i></div>
@@ -168,9 +170,9 @@
                                     <div class="media-body">
                                         <p class="media-heading"><span class="font-weight-bolder">Sales report</span>&nbsp;generated</p><small class="notification-text"> Last month sales report generated</small>
                                     </div>
-                                </div>
+                                </div> -->
                             </a><a class="d-flex" href="javascript:void(0)">
-                                <div class="media d-flex align-items-start">
+                                <!-- <div class="media d-flex align-items-start">
                                     <div class="media-left">
                                         <div class="avatar bg-light-warning">
                                             <div class="avatar-content"><i class="avatar-icon" data-feather="alert-triangle"></i></div>
@@ -179,7 +181,7 @@
                                     <div class="media-body">
                                         <p class="media-heading"><span class="font-weight-bolder">High memory</span>&nbsp;usage</p><small class="notification-text"> BLR Server using high memory</small>
                                     </div>
-                                </div>
+                                </div> -->
                             </a>
                         </li>
                         <li class="dropdown-menu-footer"><a class="btn btn-primary btn-block" href="javascript:void(0)">Read all notifications</a></li>

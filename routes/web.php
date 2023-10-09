@@ -30,6 +30,32 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/view-complain', [complaincontroller::class, 'view_complain'])->name('admin.complain.addcomplain');
     Route::get('delete/{id} ', [complaincontroller::class, 'deletecomplain']);
     Route::post('/submit-complaint', [complaincontroller::class, 'complain_store'])->name('complaint.store');
+    Route::get('view-complain-details', [complaincontroller::class, 'view_detail_complain'])->name('detail.complaint.store');
+
+});
+
+
+Route::middleware(['client'])->group(function () {
+    
+    Route::get('client/complain', [complaincontroller::class, 'view_complain']);
+    Route::get('client/add-complain', [complaincontroller::class, 'addcomplain']);
+    Route::post('client/add-complain', [complaincontroller::class, 'complain_store']);
+    Route::get('client/view-complain', [complaincontroller::class, 'view_complain'])->name('client.complain.addcomplain');
+    Route::get('delete/{id} ', [complaincontroller::class, 'deletecomplain']);
+    Route::post('/submit-complaint', [complaincontroller::class, 'complain_store'])->name('complaint.store');
+    
+
+});
+
+
+Route::middleware(['developer'])->group(function () {
+    
+    Route::get('developer/complain', [complaincontroller::class, 'view_complain']);
+    Route::get('developer/add-complain', [complaincontroller::class, 'addcomplain']);
+    Route::post('developer/add-complain', [complaincontroller::class, 'complain_store']);
+    Route::get('developer/view-complain', [complaincontroller::class, 'view_complain'])->name('developer.complain.addcomplain');
+    Route::get('delete/{id} ', [complaincontroller::class, 'deletecomplain']);
+    Route::post('/submit-complaint', [complaincontroller::class, 'complain_store'])->name('complaint.store');
     
 
 });

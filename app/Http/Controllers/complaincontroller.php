@@ -92,5 +92,22 @@ class complaincontroller extends Controller
         $data = complain :: all();
         return view('admin.complain.complains',compact('data'));
     }
+    public function view_detail_complain(Request $request){
+        $id = $request->input('id');
+        if(auth()->user()->role == 'admin'){
+            $notifyid = Notification::where('id',$request->input('notifyid'))->first();
+            $notifyid->status_by_admin = 1;
+            $notifyid->save();
+        }
+        else{
+            $notifyid = Notification::where('id',$request->input('notifyid'))->first();
+            $notifyid->status_by_client = 1;
+            $notifyid->save();
+        }
+
+        $complaint = Complain::where('id',$id)->first(); 
+
+        return view('admin.complain.view_complain_by_id',compact('complaint'));
+    }
 
 }
