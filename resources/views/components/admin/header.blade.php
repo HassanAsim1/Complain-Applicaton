@@ -117,33 +117,17 @@
                         </li>
                     </ul>
                 </li> -->
-                <li class="nav-item dropdown dropdown-notification mr-25"><a class="nav-link" href="javascript:void(0);" data-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span class="badge badge-pill badge-danger badge-up">5</span></a>
+                <li class="nav-item dropdown dropdown-notification mr-25"><a class="nav-link" href="javascript:void(0);" data-toggle="dropdown"><i class="ficon" data-feather="bell"></i><span class="badge badge-pill badge-danger badge-up">{{gettotalnotificaton()}}</span></a>
                     <ul class="dropdown-menu dropdown-menu-media dropdown-menu-right">
                         <li class="dropdown-menu-header">
                             <div class="dropdown-header d-flex">
                                 <h4 class="notification-title mb-0 mr-auto">Notifications</h4>
-                                <div class="badge badge-pill badge-light-primary">6 New</div>
+                                <div class="badge badge-pill badge-light-primary">{{gettotalnotificaton()}} New</div>
                             </div>
                         </li>
                         <li class="scrollable-container media-list"><a class="d-flex" href="javascript:void(0)">
-                                <div class="media d-flex align-items-start">
-                                    <div class="media-left">
-                                        <div class="avatar"><img src="../../../app-assets/images/portrait/small/avatar-s-15.jpg" alt="avatar" width="32" height="32"></div>
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="media-heading"><span class="font-weight-bolder">Congratulation Sam 🎉</span>winner!</p><small class="notification-text"> Won the monthly best seller badge.</small>
-                                    </div>
-                                </div>
-                            </a><a class="d-flex" href="javascript:void(0)">
-                                <div class="media d-flex align-items-start">
-                                    <div class="media-left">
-                                        <div class="avatar"><img src="../../../app-assets/images/portrait/small/avatar-s-3.jpg" alt="avatar" width="32" height="32"></div>
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="media-heading"><span class="font-weight-bolder">New message</span>&nbsp;received</p><small class="notification-text"> You have 10 unread messages</small>
-                                    </div>
-                                </div>
-                            </a><a class="d-flex" href="javascript:void(0)">
+                            @if(count(getnotification()) > 0)<a class="d-flex" href="javascript:void(0)">
+                                @foreach(getnotification() as $notify)
                                 <div class="media d-flex align-items-start">
                                     <div class="media-left">
                                         <div class="avatar bg-light-danger">
@@ -151,10 +135,12 @@
                                         </div>
                                     </div>
                                     <div class="media-body">
-                                        <p class="media-heading"><span class="font-weight-bolder">Revised Order 👋</span>&nbsp;checkout</p><small class="notification-text"> MD Inc. order updated</small>
+                                        <p class="media-heading"><span class="font-weight-bolder">Revised Complaints </span>&nbsp;checkout</p><small class="notification-text"> MD Inc. order updated</small>
                                     </div>
                                 </div>
                             </a>
+                            @endforeach
+                            @endif
                             <div class="media d-flex align-items-center">
                                 <h6 class="font-weight-bolder mr-auto mb-0">System Notifications</h6>
                                 <div class="custom-control custom-control-primary custom-switch">

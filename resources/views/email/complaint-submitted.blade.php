@@ -6,7 +6,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
-            margin: 0;
+            margin: 20px 0 0; /* Add margin-top of 20px */
             padding: 0;
         }
         .container {
@@ -43,6 +43,7 @@
             <p><strong>Title:</strong> {{ $complain->title }}</p>
             <p><strong>Description:</strong> {{ $complain->description }}</p>
         </div>
+        <p>Thank you for submitting your complaint. We have received it, and our team will review and assign it to a developer for further action. Please keep an eye on your email and our website for updates and notifications regarding your complaint.</p>
         <!-- Add more content as needed -->
     </div>
 </body>
