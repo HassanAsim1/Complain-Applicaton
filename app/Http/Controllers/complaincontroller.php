@@ -46,7 +46,6 @@ class complaincontroller extends Controller
         if($complain->save()){
 
             Mail::to('admintest@gmail.com')->send(new ComplaintSubmitted($complain));
-
             return redirect()->back()->with('success', 'Complaint Submitted Successfully');
         }
         else{

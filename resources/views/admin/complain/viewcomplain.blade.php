@@ -78,9 +78,17 @@
                                                 <td>{{$complain->title}}</td>
                                                 <td>{{$complain->description}}</td>
                                                 <td>{{$complain->type}}</td>
-                                                <td>{{$complain->categories}}</td>
-                                                <td>{{$complain->developer_id}}</td>
-                                                <td>{{$complain->status}}</td>
+                                                <td><span class="badge badge-pill badge-light-primary mr-1">{{$complain->categories}}</span></td>
+                                                <td>{{getname($complain->developer_id)}}</td>
+                                                <td>
+                                                    @if($complain->status == 'Open')
+                                                    <span class="badge badge-pill badge-light-primary mr-1">{{$complain->status}}</span>
+                                                    @elseif($complain->status == 'In progress')
+                                                    <span class="badge badge-pill badge-light-info mr-1">{{$complain->status}}</span>
+                                                    @else
+                                                    <span class="badge badge-pill badge-light-success mr-1">{{$complain->status}}</span>
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     <div class="avatar-group">
                                                         <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Lilian Nenez">
