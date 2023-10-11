@@ -9,7 +9,7 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Login Page - Vuexy - Bootstrap HTML admin template</title>
+    <title>Register Page - Complain Portal</title>
     <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
@@ -88,7 +88,7 @@
                         <!-- Login-->
                         <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
                             <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-                                <h2 class="card-title font-weight-bold mb-1">Welcome to Vuexy! 👋</h2>
+                                <h2 class="card-title font-weight-bold mb-1">Welcome to Complain Portal! 👋</h2>
                                 <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
                                 <form class="auth-login-form mt-2"  method="POST" action="{{ route('login') }}">
                                     @csrf
@@ -108,6 +108,43 @@
                                         <div class="input-group input-group-merge form-password-toggle">
                                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
                                             <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+                                        <div class="col-md-6">
+                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3" style="display:none;">
+                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
+
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" name="role" required autocomplete="role" value="client">
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Status') }}</label>
+
+                                            <div class="col-md-6">
+                                                <input type="hidden" class="form-control" name="status" required autocomplete="role" value="active">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
