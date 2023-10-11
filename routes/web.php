@@ -31,18 +31,18 @@ Route::middleware(['admin'])->group(function () {
     Route::get('delete/{id} ', [complaincontroller::class, 'deletecomplain']);
     Route::post('/submit-complaint', [complaincontroller::class, 'complain_store'])->name('complaint.store');
     Route::get('view-complain-details', [complaincontroller::class, 'view_detail_complain'])->name('detail.complaint.store');
+    Route::get('admin/add-user ', [admincontroller::class, 'add_user']);
+    Route::get('admin/view-user ', [admincontroller::class, 'view_user']);
+    Route::get('delete_user/{id} ', [admincontroller::class, 'delete_user']);
 
 });
 
 
 Route::middleware(['client'])->group(function () {
     
-    Route::get('client/complain', [complaincontroller::class, 'view_complain']);
+    Route::get('client/complaints', [complaincontroller::class, 'view_complain'])->name('client.complaints');;
     Route::get('client/add-complain', [complaincontroller::class, 'addcomplain']);
     Route::post('client/add-complain', [complaincontroller::class, 'complain_store']);
-    Route::get('client/view-complain', [complaincontroller::class, 'view_complain'])->name('client.complain.addcomplain');
-    Route::get('delete/{id} ', [complaincontroller::class, 'deletecomplain']);
-    Route::post('/submit-complaint', [complaincontroller::class, 'complain_store'])->name('complaint.store');
     
 
 });
@@ -50,18 +50,9 @@ Route::middleware(['client'])->group(function () {
 
 Route::middleware(['developer'])->group(function () {
     
-    Route::get('developer/complain', [complaincontroller::class, 'view_complain']);
-    Route::get('developer/add-complain', [complaincontroller::class, 'addcomplain']);
-    Route::post('developer/add-complain', [complaincontroller::class, 'complain_store']);
-    Route::get('developer/view-complain', [complaincontroller::class, 'view_complain'])->name('developer.complain.addcomplain');
-    Route::get('delete/{id} ', [complaincontroller::class, 'deletecomplain']);
-    Route::post('/submit-complaint', [complaincontroller::class, 'complain_store'])->name('complaint.store');
+    Route::get('developer/complaints', [complaincontroller::class, 'view_complain'])->name('developer.complaints');
+    Route::get('developer/complete/{id}',[complaincontroller::class, 'complete_complain']);
     
 
 });
 
-
-
-Route::get('admin/add-user ', [admincontroller::class, 'add_user']);
-Route::get('admin/view-user ', [admincontroller::class, 'view_user']);
-Route::get('delete_user/{id} ', [admincontroller::class, 'delete_user']);

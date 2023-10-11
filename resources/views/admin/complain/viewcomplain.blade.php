@@ -56,7 +56,7 @@
                                 <div class="card-header">
                                     <h4 class="card-title">Complains</h4>
                                 </div>
-                                <div class="table-responsive">
+                                <div class="table-responsive" style="max-height: 700px; overflow-y: auto;">
                                     <table class="table table-hover-animation">
                                         <thead>
                                             <tr>
@@ -96,17 +96,17 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td><span class="badge badge-pill badge-light-primary mr-1">Active</span></td>
+                                                <!-- <td><span class="badge badge-pill badge-light-primary mr-1">Active</span></td> -->
                                                 <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                            {{-- <a class="dropdown-item" href="javascript:void(0);">
                                                                 <i data-feather="edit-2" class="mr-50"></i>
                                                                 <span>Edit</span>
-                                                            </a>
+                                                            </a> --}}
                                                             <a class="dropdown-item" href="#" onclick="confirmDelete({{ $complain->id }})">
                                                                     <i data-feather="trash" class="mr-50"></i>
                                                                     <span>Delete</span>

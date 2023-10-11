@@ -20,14 +20,14 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Complaint Form</h2>
+                            <h2 class="content-header-title float-left mb-0">Add User</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Forms</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Complaint Form
+                                    <li class="breadcrumb-item active">Add User
                                     </li>
                                 </ol>
                             </div>
@@ -82,7 +82,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="description">Confirm Passowrd*</label>
-                                            <input type="password" id="email" class="form-control" placeholder="Email" name="password_confirmation" required>
+                                            <input type="password" id="Confrim Password" class="form-control" placeholder="Confirm Password" name="password_confirmation" required>
                                         </div>
                                     </div>
 

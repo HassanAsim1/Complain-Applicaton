@@ -68,7 +68,7 @@
                                                 <th>Developer</th>
                                                 <th>status</th>
                                                 <th>file</th>
-                                                <!-- <th>Action</th> -->
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -96,24 +96,24 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td><span class="badge badge-pill badge-light-primary mr-1">Active</span></td>
-                                                {{-- <td>
+                                                <!-- <td><span class="badge badge-pill badge-light-primary mr-1">Active</span></td> -->
+                                                <td>
                                                     <div class="dropdown">
                                                         <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <!-- <a class="dropdown-item" href="javascript:void(0);">
+                                                            <a class="dropdown-item" href="javascript:void(0);">
                                                                 <i data-feather="edit-2" class="mr-50"></i>
-                                                                <span>Complete</span>
-                                                            </a> -->
-                                                            <a class="dropdown-item" href="#" onclick="confirmDelete({{ $complain->id }})">
+                                                                <span>Edit</span>
+                                                            </a>
+                                                            <a class="dropdown-item" href="#" onclick="confirmComplete({{ $complain->id }})">
                                                                     <i data-feather="trash" class="mr-50"></i>
                                                                     <span>Complete</span>
                                                             </a>
                                                         </div>
                                                     </div>
-                                                </td> --}}
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -131,11 +131,11 @@
 
 
     <script>
-    function confirmDelete(complainId) {
-        var confirmation = confirm("Are you sure you want to delete this item?");
+    function confirmComplete(complainId) {
+        var confirmation = confirm("Are you sure you want to chnage the status of this complain?");
         if (confirmation) {
             // If the user confirms, redirect to the delete URL
-            window.location.href = "{{ url('delete') }}/" + complainId;
+            window.location.href = "{{ url('developer/complete') }}/" + complainId;
         }
     }
     </script>

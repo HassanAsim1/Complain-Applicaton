@@ -26,7 +26,7 @@
                                     </g>
                                 </g>
                             </svg></span>
-                        <h2 class="brand-text">Vuexy</h2>
+                        <h2 class="brand-text">Complaints Portal</h2>
                     </a></li>
                 <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li>
             </ul>
@@ -41,12 +41,14 @@
                         <span class="menu-title text-truncate" data-i18n="Datatable">Complaints</span>
                     </a>
                     <ul class="menu-content">
+                        @if(auth()->user()->role != 'developer')
                         <li class="{{ request()->is('admin/add-complain*') ? 'active' : '' }}">
                             <a class="d-flex align-items-center" href="{{ url('admin/add-complain') }}">
                                 <i data-feather="circle"></i>
                                 <span class="menu-item text-truncate" data-i18n="Basic">Add Complaints</span>
                             </a>
                         </li>
+                        @endif
                         <li class="{{ request()->is('admin/view-complain*') ? 'active' : '' }}">
                             <a class="d-flex align-items-center" href="{{ url('admin/view-complain') }}">
                                 <i data-feather="circle"></i>
@@ -55,7 +57,7 @@
                         </li>
                     </ul>
                 </li>
-
+                @if(auth()->user()->role == 'admin')
                 <li class="{{ request()->is('admin/view-user*') || request()->is('admin/view-user*') ? 'active' : '' }} nav-item">
                     <a class="d-flex align-items-center" href="{{ url('admin/complain') }}">
                         <i data-feather="grid"></i>
@@ -76,6 +78,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
             </ul>
             
         </div>

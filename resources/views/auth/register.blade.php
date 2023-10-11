@@ -90,7 +90,7 @@
                             <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
                                 <h2 class="card-title font-weight-bold mb-1">Welcome to Complain Portal! 👋</h2>
                                 <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
-                                <form class="auth-login-form mt-2"  method="POST" action="{{ route('login') }}">
+                                <form class="auth-login-form mt-2"  method="POST" action="{{ route('register') }}">
                                     @csrf
                                     <div class="form-group">
                                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -106,47 +106,44 @@
                                         <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label></a>
                                         </div>
                                         <div class="input-group input-group-merge form-password-toggle">
-                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required>
+                                        </div>
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="d-flex justify-content-between">
+                                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label></a>
+                                        </div>
+                                        <div class="input-group input-group-merge form-password-toggle">
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                        <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span></div>
+                                                @error('password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="d-flex justify-content-between">
+                                        <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label></a>
+                                        </div>
+                                        <div class="input-group input-group-merge form-password-toggle">
+                                            <input id="password-confirm" type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password">
+                                                    @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                             <div class="input-group-append"><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span></div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                            @error('password')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                                        <div class="col-md-6">
-                                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3" style="display:none;">
-                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="role" required autocomplete="role" value="client">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Status') }}</label>
-
-                                            <div class="col-md-6">
-                                                <input type="hidden" class="form-control" name="status" required autocomplete="role" value="active">
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <input type="hidden" class="form-control" name="role" required autocomplete="role" value="client">
+                                    <input type="hidden" class="form-control" name="status" required autocomplete="role" value="active">
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox">
                                             <input class="custom-control-input" id="remember-me" type="checkbox" tabindex="3" />
@@ -155,7 +152,7 @@
                                     </div>
                                     <button class="btn btn-primary btn-block" tabindex="4">Sign in</button>
                                 </form>
-                                <p class="text-center mt-2"><span>New on our platform?</span><a href="page-auth-register-v2.html"><span>&nbsp;Create an account</span></a></p>
+                                <p class="text-center mt-2"><span>New on our platform?</span><a href="{{url('register')}}"><span>&nbsp;Already have an account</span></a></p>
                                 <div class="divider my-2">
                                     <div class="divider-text">or</div>
                                 </div>

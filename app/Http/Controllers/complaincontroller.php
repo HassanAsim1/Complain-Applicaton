@@ -13,8 +13,18 @@ class complaincontroller extends Controller
 {
     public function view_complain()
     {
-        $data = complain :: all();
-        return view('admin.complain.viewcomplain',['members'=>$data]);
+        if(auth()->user()->role  == 'admin'){
+            $data = complain :: all();
+            return view('admin.complain.viewcomplain',['members'=>$data]);
+        }
+        elseif(auth()->user()->role  == 'developer'){
+            $data = complain :: where('developer_id',auth()->user()->id)->get();
+            return view('developer.view_developer',['members'=>$data]);
+        }
+        else{
+            $data = complain :: where('client_id',auth()->user()->id)->get();
+            return view('client.view_client_complain',['members'=>$data]);
+        }
     }
 
 
@@ -61,13 +71,16 @@ class complaincontroller extends Controller
             $notify->complain_status = $request->input('status');
             $notify->status_by_client = 0;
             $notify->status_by_admin = 0;
+            $data->assign_by = auth()->user()->id;
 
             $notify->save();
+
+            $complain->assign_by = auth()->user()->id;
 
 
         
             // Send email
-            Mail::to('admintest@gmail.com')->send(new ComplaintSubmitted($complain));
+            Mail::to(auth()->user()->email)->send(new ComplaintSubmitted($complain));
             return redirect()->back()->with('success', 'Complaint Submitted Successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred while submitting the complaint: ' . $e->getMessage());
@@ -108,6 +121,30 @@ class complaincontroller extends Controller
         $complaint = Complain::where('id',$id)->first(); 
 
         return view('admin.complain.view_complain_by_id',compact('complaint'));
+    }
+    public function complete_complain($id){
+        try {
+            $data = Complain::where('id', $id)->first();
+            $data->status = 'Resolved';
+        
+            $notify = new Notification;
+            $notify->assign_by = $data->assign_by;
+            $notify->developer_id = auth()->user()->id;
+            $notify->complain_no = $data->id; // Is $complain a typo? It should be $data->id
+            $notify->categories = $data->categories;
+            $notify->type = $data->type;
+            $notify->complain_status = $data->status;
+            $notify->status_by_client = 0;
+            $notify->status_by_admin = 0;
+        
+            $notify->save();
+            $data->save();
+        
+            return redirect()->back()->with('success', 'Complaint Resolved Successfully');
+        } catch (QueryException $e) {
+            // Handle the exception here
+            return redirect()->back()->with('error', 'An error occurred while resolving the complaint.');
+        }
     }
 
 }
