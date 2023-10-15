@@ -94,6 +94,7 @@ class complaincontroller extends Controller
     public function addcomplain()
     {
         $developer = User::where('role','developer')->get();
+        dd($developer);
         return view('admin.complain.addcomplain',compact('developer'));
     }
     public function clientAddComplain(){
@@ -155,6 +156,69 @@ class complaincontroller extends Controller
         } catch (QueryException $e) {
             // Handle the exception here
             return redirect()->back()->with('error', 'An error occurred while resolving the complaint.');
+        }
+    }
+    public function edit_complaint($id){
+        $complain = Complain::where('id',$id)->first();
+        $developer = User::where('role','developer')->get();
+        return view('admin.complain.editComplain',compact('complain','developer'));
+    }
+    public function edit_complaint_store(Request $request){
+         // Validate the form data
+         $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+
+        // Create a new Complain model instance and populate it with the form data
+        try {
+            $complain = Complain::where('id',$request->complainId)->first();
+            $complain->title = $request->title;
+            $complain->description = $request->description;
+            $complain->categories = $request->categories;
+            $complain->status = $request->status;
+            $complain->type = $request->type;
+            $complain->client_id = auth()->user()->id;
+            if(auth()->user()->role == 'admin'){
+                $complain->assign_by = auth()->user()->id;
+            }
+
+            if ($request->id) {
+                $complain->developer_id = $request->id;
+            }
+            
+            // Handle image upload if provided
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('complain_images', 'public');
+                $complain->image = $imagePath;
+            }
+        
+            // Save the Complain model to the database
+            $complain->save();
+
+            $notify = new Notification;
+            $notify->assign_by = auth()->user()->id;
+            $notify->developer_id = $request->id;
+            if($request->client_id){
+                $notify->user_id = $request->user_id;
+            }
+            $notify->complain_no = $complain->id;
+            $notify->categories = $request->categories;
+            $notify->type = $request->type;
+            $notify->complain_status = $request->status;
+            $notify->status_by_client = 0;
+            $notify->status_by_admin = 0;
+            $notify->assign_by = auth()->user()->id;
+
+            $notify->save();
+
+
+        
+            // Send email
+            Mail::to(auth()->user()->email)->send(new ComplaintStatus($complain));
+            return redirect()->back()->with('success', 'Complaint Updated Successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred while submitting the complaint: ' . $e->getMessage());
         }
     }
 

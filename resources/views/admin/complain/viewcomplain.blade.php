@@ -79,7 +79,13 @@
                                                 <td>{{$complain->description}}</td>
                                                 <td>{{$complain->type}}</td>
                                                 <td><span class="badge badge-pill badge-light-primary mr-1">{{$complain->categories}}</span></td>
-                                                <td>{{getname($complain->developer_id)}}</td>
+                                                <td>
+                                                    @if($complain->developer_id == '')
+                                                    <span class="badge badge-pill badge-light-info mr-1">Not Assign</span>
+                                                    @else
+                                                    {{getname($complain->developer_id)}}
+                                                    @endif
+                                                </td>
                                                 <td>
                                                     @if($complain->status == 'Open')
                                                     <span class="badge badge-pill badge-light-primary mr-1">{{$complain->status}}</span>
@@ -103,10 +109,10 @@
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            {{-- <a class="dropdown-item" href="javascript:void(0);">
+                                                            <a class="dropdown-item" href="{{url('edit-complaint/'.$complain->id)}}">
                                                                 <i data-feather="edit-2" class="mr-50"></i>
                                                                 <span>Edit</span>
-                                                            </a> --}}
+                                                            </a>
                                                             <a class="dropdown-item" href="#" onclick="confirmDelete({{ $complain->id }})">
                                                                     <i data-feather="trash" class="mr-50"></i>
                                                                     <span>Delete</span>

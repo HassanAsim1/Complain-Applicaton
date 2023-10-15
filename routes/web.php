@@ -31,9 +31,11 @@ Route::middleware(['admin'])->group(function () {
     Route::get('delete/{id} ', [complaincontroller::class, 'deletecomplain']);
     Route::post('/submit-complaint', [complaincontroller::class, 'complain_store'])->name('complaint.store');
     Route::get('view-complain-details', [complaincontroller::class, 'view_detail_complain'])->name('detail.complaint.store');
-    Route::get('admin/add-user ', [admincontroller::class, 'add_user']);
-    Route::get('admin/view-user ', [admincontroller::class, 'view_user']);
-    Route::get('delete_user/{id} ', [admincontroller::class, 'delete_user']);
+    Route::get('admin/add-user', [admincontroller::class, 'add_user']);
+    Route::get('admin/view-user', [admincontroller::class, 'view_user']);
+    Route::get('delete_user/{id}', [admincontroller::class, 'delete_user']);
+    Route::get('edit-complaint/{id}', [complaincontroller::class, 'edit_complaint']);
+    Route::post('admin/edit-complain', [complaincontroller::class, 'edit_complaint_store']);
 
 });
 
@@ -41,7 +43,7 @@ Route::middleware(['admin'])->group(function () {
 Route::middleware(['client'])->group(function () {
     
     Route::get('client/complaints', [complaincontroller::class, 'view_complain'])->name('client.complaints');;
-    Route::get('client/add-complain', [complaincontroller::class, 'clientAddComplain']);
+    Route::get('client/add-client-complain', [complaincontroller::class, 'clientAddComplain']);
     Route::post('client/add-complain', [complaincontroller::class, 'complain_store']);
     
 

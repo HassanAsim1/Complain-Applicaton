@@ -26,7 +26,7 @@
                                     </g>
                                 </g>
                             </svg></span>
-                        <h2 class="brand-text">Complaints Portal</h2>
+                        <h3 class="brand-text">CP</h3>
                     </a></li>
                 <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li>
             </ul>
@@ -51,7 +51,7 @@
                         @endif
                         @if(auth()->user()->role == 'client')
                         <li class="{{ request()->is('client/add-complain*') ? 'active' : '' }}">
-                            <a class="d-flex align-items-center" href="{{ url('client/add-complain') }}">
+                            <a class="d-flex align-items-center" href="{{ url('client/add-client-complain') }}">
                                 <i data-feather="circle"></i>
                                 <span class="menu-item text-truncate" data-i18n="Basic">Add Complaints</span>
                             </a>

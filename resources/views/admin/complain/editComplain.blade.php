@@ -20,14 +20,14 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Add Complaint</h2>
+                            <h2 class="content-header-title float-left mb-0">Edit Complaint</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Forms</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Add Complaint
+                                    <li class="breadcrumb-item active">Edit Complaint
                                     </li>
                                 </ol>
                             </div>
@@ -56,19 +56,20 @@
                                     <h4 class="card-title">Add Complaint</h4>
                                 </div>
                                 <div class="card-body">
-                                <form class="form" action="{{ url('admin/add-complain') }}" method="POST" enctype="multipart/form-data">
+                                <form class="form" action="{{ url('admin/edit-complain') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="complainId" value="{{$complain->id}}">
                                 <div class="row">
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="title">Title*</label>
-                                            <input type="text" id="title" class="form-control" placeholder="Title" value="{{$complaint->title}}" name="title" required>
+                                            <input type="text" id="title" class="form-control" placeholder="Title" name="title" value="{{$complain->title}}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="description">Description*</label>
-                                            <input type="text" id="description" class="form-control" value="{{$complaint->description}}" placeholder="Description" name="description" required>
+                                            <input type="text" id="description" class="form-control" placeholder="Description" value="{{$complain->description}}" name="description" required>
                                         </div>
                                     </div>
 
@@ -76,7 +77,7 @@
                                         <div class="form-group">
                                             <label for="categories">Categories</label>
                                             <select id="categories" class="form-control" name="categories" required>
-                                                <option value="{{$complaint->categories}}">{{$complaint->categories}}</option>
+                                                <option value="{{$complain->categories}}">{{$complain->categories}}</option>
                                                 <option value="critical">Critical</option>
                                                 <option value="major">Major</option>
                                                 <option value="minor">Minor</option>
@@ -88,7 +89,7 @@
                                         <div class="form-group">
                                             <label for="categories">Status</label>
                                             <select id="categories" class="form-control" name="status" required>
-                                                <option value="{{$complaint->status}}">{{$complaint->status}}</option>
+                                                <option value="{{$complain->status}}">{{$complain->status}}</option>
                                                 <option value="Open">Open</option>
                                                 <option value="In progress">In progress</option>
                                                 <option value="Resolved">Resolved</option>
@@ -100,7 +101,7 @@
                                         <div class="form-group">
                                             <label for="categories">Type</label>
                                             <select id="categories" class="form-control" name="type" required>
-                                                <option value="{{$complaint->type}}">{{$complaint->type}}</option>
+                                                <option value="{{$complain->type}}">{{$complain->type}}</option>
                                                 <option value="bug">Bug</option>
                                                 <option value="enhancement">Enhancement</option>
                                                 <option value="feature request">Feature Request</option>
@@ -112,21 +113,21 @@
                                         <div class="form-group">
                                             <label for="file">Upload Supportive Document</label>
                                             <input type="file" id="file" class="form-control" name="image" placeholder="File">
-                                            <img src="{{asset('storage/'.$complaint->image)}}" width="150px" height="100px"/>
                                         </div>
                                     </div>
-
+                                    @if(auth()->user()->role == 'admin')
                                     <div class="col-md-6 col-12 mb-3">
                                         <div class="form-group">
                                             <label for="categories">Assign Developer</label>
                                             <select id="categories" class="form-control" name="id" required>
-                                                <option value="{{$complaint->developer_id}}">{{getname($complaint->developer_id)}}</option>
-                                                {{-- @foreach($developer as $user)
+                                                <option value="{{$complain->developer_id}}">{{getname($complain->developer_id)}}</option>
+                                                @foreach($developer as $user)
                                                     <option value="{{$user->id}}">{{$user->name}}</option>
-                                                @endforeach --}}
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
+                                    @endif
 
                                     <div class="col-12 mt-2">
                                         <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
