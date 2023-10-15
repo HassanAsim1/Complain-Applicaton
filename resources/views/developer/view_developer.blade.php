@@ -92,7 +92,9 @@
                                                 <td>
                                                     <div class="avatar-group">
                                                         <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Lilian Nenez">
-                                                            <img src="{{ asset('storage/' . $complain->image) }}" alt="Avatar" height="26" width="26" />
+                                                            <a href="{{ asset('storage/' . $complain->image) }}" download>
+                                                                <img src="{{ asset('storage/' . $complain->image) }}" alt="Avatar" height="26" width="26" />
+                                                            </a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -103,10 +105,10 @@
                                                             <i data-feather="more-vertical"></i>
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="javascript:void(0);">
+                                                            <!-- <a class="dropdown-item" href="javascript:void(0);">
                                                                 <i data-feather="edit-2" class="mr-50"></i>
                                                                 <span>Edit</span>
-                                                            </a>
+                                                            </a> -->
                                                             <a class="dropdown-item" href="#" onclick="confirmComplete({{ $complain->id }})">
                                                                     <i data-feather="trash" class="mr-50"></i>
                                                                     <span>Complete</span>

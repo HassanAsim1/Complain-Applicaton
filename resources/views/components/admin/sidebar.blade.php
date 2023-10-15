@@ -41,9 +41,17 @@
                         <span class="menu-title text-truncate" data-i18n="Datatable">Complaints</span>
                     </a>
                     <ul class="menu-content">
-                        @if(auth()->user()->role != 'developer')
+                        @if(auth()->user()->role != 'developer' && auth()->user()->role != 'client')
                         <li class="{{ request()->is('admin/add-complain*') ? 'active' : '' }}">
                             <a class="d-flex align-items-center" href="{{ url('admin/add-complain') }}">
+                                <i data-feather="circle"></i>
+                                <span class="menu-item text-truncate" data-i18n="Basic">Add Complaints</span>
+                            </a>
+                        </li>
+                        @endif
+                        @if(auth()->user()->role == 'client')
+                        <li class="{{ request()->is('client/add-complain*') ? 'active' : '' }}">
+                            <a class="d-flex align-items-center" href="{{ url('client/add-complain') }}">
                                 <i data-feather="circle"></i>
                                 <span class="menu-item text-truncate" data-i18n="Basic">Add Complaints</span>
                             </a>

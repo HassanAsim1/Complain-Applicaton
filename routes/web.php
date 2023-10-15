@@ -41,7 +41,7 @@ Route::middleware(['admin'])->group(function () {
 Route::middleware(['client'])->group(function () {
     
     Route::get('client/complaints', [complaincontroller::class, 'view_complain'])->name('client.complaints');;
-    Route::get('client/add-complain', [complaincontroller::class, 'addcomplain']);
+    Route::get('client/add-complain', [complaincontroller::class, 'clientAddComplain']);
     Route::post('client/add-complain', [complaincontroller::class, 'complain_store']);
     
 
@@ -49,10 +49,8 @@ Route::middleware(['client'])->group(function () {
 
 
 Route::middleware(['developer'])->group(function () {
-    
     Route::get('developer/complaints', [complaincontroller::class, 'view_complain'])->name('developer.complaints');
     Route::get('developer/complete/{id}',[complaincontroller::class, 'complete_complain']);
-    
 
 });
 

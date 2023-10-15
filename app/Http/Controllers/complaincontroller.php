@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\complain;
 use App\Models\User;
 use App\Mail\ComplaintSubmitted;
+use App\Mail\ComplaintStatus;
 use App\Models\Notification;
 
 class complaincontroller extends Controller
@@ -45,7 +46,11 @@ class complaincontroller extends Controller
             $complain->categories = $request->input('categories');
             $complain->status = $request->input('status');
             $complain->type = $request->input('type');
-            
+            $complain->client_id = auth()->user()->id;
+            if(auth()->user()->role == 'admin'){
+                $complain->assign_by = auth()->user()->id;
+            }
+
             if ($request->input('id')) {
                 $complain->developer_id = $request->input('id');
             }
@@ -71,11 +76,9 @@ class complaincontroller extends Controller
             $notify->complain_status = $request->input('status');
             $notify->status_by_client = 0;
             $notify->status_by_admin = 0;
-            $data->assign_by = auth()->user()->id;
+            $notify->assign_by = auth()->user()->id;
 
             $notify->save();
-
-            $complain->assign_by = auth()->user()->id;
 
 
         
@@ -92,6 +95,10 @@ class complaincontroller extends Controller
     {
         $developer = User::where('role','developer')->get();
         return view('admin.complain.addcomplain',compact('developer'));
+    }
+    public function clientAddComplain(){
+        $developer = User::where('role','developer')->get();
+        return view('client.addcomplain',compact('developer'));
     }
 
     public function deletecomplain($id)
@@ -126,19 +133,23 @@ class complaincontroller extends Controller
         try {
             $data = Complain::where('id', $id)->first();
             $data->status = 'Resolved';
-        
+
             $notify = new Notification;
             $notify->assign_by = $data->assign_by;
             $notify->developer_id = auth()->user()->id;
             $notify->complain_no = $data->id; // Is $complain a typo? It should be $data->id
             $notify->categories = $data->categories;
+            $notify->user_id = $data->client_id;
             $notify->type = $data->type;
             $notify->complain_status = $data->status;
             $notify->status_by_client = 0;
             $notify->status_by_admin = 0;
+            $notify->assign_by = $data->assign_by;
         
             $notify->save();
             $data->save();
+
+            Mail::to(auth()->user()->email)->send(new ComplaintStatus($data));
         
             return redirect()->back()->with('success', 'Complaint Resolved Successfully');
         } catch (QueryException $e) {
