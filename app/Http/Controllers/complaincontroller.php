@@ -94,7 +94,6 @@ class complaincontroller extends Controller
     public function addcomplain()
     {
         $developer = User::where('role','developer')->get();
-        dd($developer);
         return view('admin.complain.addcomplain',compact('developer'));
     }
     public function clientAddComplain(){
