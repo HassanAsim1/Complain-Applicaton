@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admincontroller;
 use App\Http\Controllers\complaincontroller;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,6 +37,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('delete_user/{id}', [admincontroller::class, 'delete_user']);
     Route::get('edit-complaint/{id}', [complaincontroller::class, 'edit_complaint']);
     Route::post('admin/edit-complain', [complaincontroller::class, 'edit_complaint_store']);
+    Route::post('admin/add-user', [UserController::class, 'developerRegister'])->name('developerRegister');
 
 });
 
