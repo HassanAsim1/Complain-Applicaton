@@ -12,7 +12,7 @@ class admincontroller extends Controller
     {
         return view('admin.complain.adduser');
     }
-    public function delete_user()
+    public function delete_user($id)
     {
         $data = User::find($id);
         $data->delete();
@@ -23,6 +23,5 @@ class admincontroller extends Controller
         $data = User::all();
         return view('admin.complain.view_user', compact('data'));
     }
-
     
 }

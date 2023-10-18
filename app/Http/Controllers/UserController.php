@@ -29,7 +29,7 @@ class UserController extends Controller
                 'status' => $request['status'],
             ]);
         
-            return redirect()->back()->with('success', 'Developer Registered Successfully');
+            return redirect()->back()->with('success', $request['role'] .' Registered Successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
