@@ -81,21 +81,12 @@
                                                 <td><span class="badge badge-pill badge-light-danger mr-1">{{$data->status}}</span></td>
                                                 @endif
                                                 <td>
-                                                    <div class="dropdown">
-                                                        <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
-                                                            <i data-feather="more-vertical"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="javascript:void(0);">
-                                                                <i data-feather="edit-2" class="mr-50"></i>
-                                                                <span>Edit</span>
+                                                    <!-- <a class="dropdown-item" href="javascript:void(0);">
+                                                            <button class="btn btn-sm btn-primary"></button>
+                                                            </a> -->
+                                                            <a href="#" onclick="confirmDelete({{ $data->id }})">
+                                                                <button class="btn btn-sm btn-danger">delete</button>
                                                             </a>
-                                                            <a class="dropdown-item" href="#" onclick="confirmDelete({{ $data->id }})">
-                                                                    <i data-feather="trash" class="mr-50"></i>
-                                                                    <span>Delete</span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
                                                 </td>
                                             </tr>
                                             @endforeach

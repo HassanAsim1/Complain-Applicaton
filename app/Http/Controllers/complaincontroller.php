@@ -83,7 +83,7 @@ class complaincontroller extends Controller
 
         
             // Send email
-            Mail::to(auth()->user()->email)->send(new ComplaintSubmitted($complain));
+            // Mail::to(auth()->user()->email)->send(new ComplaintSubmitted($complain));
             return redirect()->back()->with('success', 'Complaint Submitted Successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred while submitting the complaint: ' . $e->getMessage());
@@ -149,7 +149,7 @@ class complaincontroller extends Controller
             $notify->save();
             $data->save();
 
-            Mail::to(auth()->user()->email)->send(new ComplaintStatus($data));
+            // Mail::to(auth()->user()->email)->send(new ComplaintStatus($data));
         
             return redirect()->back()->with('success', 'Complaint Resolved Successfully');
         } catch (QueryException $e) {
@@ -214,7 +214,7 @@ class complaincontroller extends Controller
 
         
             // Send email
-            Mail::to(auth()->user()->email)->send(new ComplaintStatus($complain));
+            // Mail::to(auth()->user()->email)->send(new ComplaintStatus($complain));
             return redirect()->back()->with('success', 'Complaint Updated Successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred while submitting the complaint: ' . $e->getMessage());

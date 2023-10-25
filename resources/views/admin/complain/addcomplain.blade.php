@@ -20,14 +20,14 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Add Complaint</h2>
+                            <h2 class="content-header-title float-left mb-0">Add Ticket</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Forms</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Add Complaint
+                                    <li class="breadcrumb-item active">Add Ticket
                                     </li>
                                 </ol>
                             </div>
@@ -53,7 +53,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Add Complaint</h4>
+                                    <h4 class="card-title">Add Ticket</h4>
                                 </div>
                                 <div class="card-body">
                                 <form class="form" action="{{ url('admin/add-complain') }}" method="POST" enctype="multipart/form-data">
@@ -84,7 +84,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-12 mb-3">
+                                    <!-- <div class="col-md-6 col-12 mb-3">
                                         <div class="form-group">
                                             <label for="categories">Status</label>
                                             <select id="categories" class="form-control" name="status" required>
@@ -94,7 +94,7 @@
                                                 <option value="Resolved">Resolved</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="col-md-6 col-12 mb-3">
                                         <div class="form-group">
@@ -103,7 +103,6 @@
                                                 <option value="">Select</option>
                                                 <option value="bug">Error</option>
                                                 <option value="enhancement">Enhancement</option>
-                                                <option value="feature request">Feature Request</option>
                                             </select>
                                         </div>
                                     </div>

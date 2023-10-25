@@ -20,14 +20,14 @@
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-left mb-0">Edit Complaint</h2>
+                            <h2 class="content-header-title float-left mb-0">Edit Ticket</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="#">Home</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Forms</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Edit Complaint
+                                    <li class="breadcrumb-item active">Edit Ticket
                                     </li>
                                 </ol>
                             </div>
@@ -53,7 +53,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Add Complaint</h4>
+                                    <h4 class="card-title">Add Ticket</h4>
                                 </div>
                                 <div class="card-body">
                                 <form class="form" action="{{ url('admin/edit-complain') }}" method="POST" enctype="multipart/form-data">

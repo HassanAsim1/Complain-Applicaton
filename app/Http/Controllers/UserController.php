@@ -14,11 +14,11 @@ class UserController extends Controller
             $validate = Validator::make($request->all(), [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
         
             if ($validate->fails()) {
-                return redirect()->back()->with('error', 'Validation failed');
+                return redirect()->back()->with('error', 'Validation failed - password and confirm password must be same');
             }
         
             $data = User::create([

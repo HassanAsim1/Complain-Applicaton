@@ -23,12 +23,12 @@
                         <div class="content-header-left col-md-9 col-12 mb-2">
                             <div class="row breadcrumbs-top">
                                 <div class="col-12">
-                                    <h2 class="content-header-title float-left mb-0">Complains</h2>
+                                    <h2 class="content-header-title float-left mb-0">Ticket</h2>
                                     <div class="breadcrumb-wrapper">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="#">Home</a>
                                             </li>
-                                            <li class="breadcrumb-item"><a href="#">View Complains</a>
+                                            <li class="breadcrumb-item"><a href="#">View Ticket</a>
                                             </li>
                                         </ol>
                                     </div>
@@ -54,7 +54,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Complains</h4>
+                                    <h4 class="card-title">Ticket</h4>
                                 </div>
                                 <div class="table-responsive" style="max-height: 700px; overflow-y: auto;">
                                     <table class="table table-hover-animation">
@@ -98,27 +98,18 @@
                                                 <td>
                                                     <div class="avatar-group">
                                                         <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Lilian Nenez">
-                                                            <img src="{{ asset('storage/' . $complain->image) }}" alt="Avatar" height="26" width="26" />
+                                                            <img src="{{ asset('storage/' . $complain->image) }}" alt="Avatar" height="26" width="26" download/>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <!-- <td><span class="badge badge-pill badge-light-primary mr-1">Active</span></td> -->
                                                 <td>
-                                                    <div class="dropdown">
-                                                        <button type="button" class="btn btn-sm dropdown-toggle hide-arrow" data-toggle="dropdown">
-                                                            <i data-feather="more-vertical"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" href="{{url('edit-complaint/'.$complain->id)}}">
-                                                                <i data-feather="edit-2" class="mr-50"></i>
-                                                                <span>Edit</span>
-                                                            </a>
-                                                            <a class="dropdown-item" href="#" onclick="confirmDelete({{ $complain->id }})">
-                                                                    <i data-feather="trash" class="mr-50"></i>
-                                                                    <span>Delete</span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
+                                                 <a href="{{url('edit-complaint/'.$complain->id)}}">
+                                                    <button class="btn btn-sm btn-primary">Edit</button>
+                                                    </a>
+                                                    <a  onclick="confirmDelete({{ $complain->id }})">
+                                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                             @endforeach
