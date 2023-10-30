@@ -48,6 +48,7 @@
             <x-alert />
 
             <div class="content-body">
+            @if($complaint)
             <section id="multiple-column-form">
                     <div class="row">
                         <div class="col-12">
@@ -62,13 +63,21 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="title">Title*</label>
-                                            <input type="text" id="title" class="form-control" placeholder="Title" value="{{$complaint->title}}" name="title" required>
+                                            @if($complaint->title)
+                                                <input type="text" id="title" class="form-control" placeholder="Title" value="{{$complaint->title}}" name="title" required>
+                                            @else
+                                                <input type="text" id="title" class="form-control" placeholder="Title" name="title" required>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="description">Description*</label>
-                                            <input type="text" id="description" class="form-control" value="{{$complaint->description}}" placeholder="Description" name="description" required>
+                                            @if($complaint->description)
+                                                <input type="text" id="description" class="form-control" value="{{$complaint->description}}" placeholder="Description" name="description" required>
+                                            @else
+                                                <input type text="text" id="description" class="form-control" placeholder="Description" name="description" required>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -76,22 +85,12 @@
                                         <div class="form-group">
                                             <label for="categories">Categories</label>
                                             <select id="categories" class="form-control" name="categories" required>
-                                                <option value="{{$complaint->categories}}">{{$complaint->categories}}</option>
-                                                <option value="critical">Critical</option>
-                                                <option value="major">Major</option>
-                                                <option value="minor">Minor</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 col-12 mb-3">
-                                        <div class="form-group">
-                                            <label for="categories">Status</label>
-                                            <select id="categories" class="form-control" name="status" required>
-                                                <option value="{{$complaint->status}}">{{$complaint->status}}</option>
-                                                <option value="Open">Open</option>
-                                                <option value="In progress">In progress</option>
-                                                <option value="Resolved">Resolved</option>
+                                                @if($complaint->categories)
+                                                    <option value="{{$complaint->categories}}">{{$complaint->categories}}</option>
+                                                @endif
+                                                <option value="Critical">Critical</option>
+                                                <option value="Major">Major</option>
+                                                <option value="Minor">Minor</option>
                                             </select>
                                         </div>
                                     </div>
@@ -100,10 +99,12 @@
                                         <div class="form-group">
                                             <label for="categories">Type</label>
                                             <select id="categories" class="form-control" name="type" required>
-                                                <option value="{{$complaint->type}}">{{$complaint->type}}</option>
-                                                <option value="bug">Bug</option>
-                                                <option value="enhancement">Enhancement</option>
-                                                <option value="feature request">Feature Request</option>
+                                                @if($complaint->type)
+                                                    <option value="{{$complaint->type}}">{{$complaint->type}}</option>
+                                                @endif
+                                                <option value="Error">Error</option>
+                                                <option value="Enhancement">Enhancement</option>
+                                                <!-- <option value="feature request">Feature Request</option> -->
                                             </select>
                                         </div>
                                     </div>
@@ -112,7 +113,9 @@
                                         <div class="form-group">
                                             <label for="file">Upload Supportive Document</label>
                                             <input type="file" id="file" class="form-control" name="image" placeholder="File">
-                                            <img src="{{asset('storage/'.$complaint->image)}}" width="150px" height="100px"/>
+                                            @if($complaint->image)
+                                                <img src="{{asset('storage/'.$complaint->image)}}" width="150px" height="100px" />
+                                            @endif
                                         </div>
                                     </div>
 
@@ -120,13 +123,17 @@
                                         <div class="form-group">
                                             <label for="categories">Assign Developer</label>
                                             <select id="categories" class="form-control" name="id" required>
-                                                <option value="{{$complaint->developer_id}}">{{getname($complaint->developer_id)}}</option>
+                                                @if($complaint->developer_id)
+                                                    <option value="{{$complaint->developer_id}}">{{getname($complaint->developer_id)}}</option>
+                                                @endif
                                                 {{-- @foreach($developer as $user)
-                                                    <option value="{{$user->id}}">{{$user->name}}</option>
+                                                <option value="{{$user->id}}">{{$user->name}}</option>
                                                 @endforeach --}}
                                             </select>
                                         </div>
                                     </div>
+                                </div>
+
 
                                     <div class="col-12 mt-2">
                                         <!-- <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button> -->
@@ -140,7 +147,10 @@
                         </div>
                     </div>
                 </section>
-                                                </div>
+            </div>
+            @else
+            <span class="badge badge-danger">Complaint no more Exist.</span>
+            @endif
             </div>
         </div>
     </div>

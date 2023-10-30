@@ -81,7 +81,7 @@
 
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="description">Confirm Passowrd*</label>
+                                            <label for="description">Confirm Password*</label>
                                             <input type="password" id="Confrim Password" class="form-control" placeholder="Confirm Password" name="password_confirmation" required>
                                         </div>
                                     </div>

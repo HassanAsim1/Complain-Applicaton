@@ -77,9 +77,9 @@
                                             <label for="categories">Categories</label>
                                             <select id="categories" class="form-control" name="categories" required>
                                                 <option value="">Select</option>
-                                                <option value="critical">Critical</option>
-                                                <option value="major">Major</option>
-                                                <option value="minor">Minor</option>
+                                                <option value="Critical">Critical</option>
+                                                <option value="Major">Major</option>
+                                                <option value="Minor">Minor</option>
                                             </select>
                                         </div>
                                     </div>
@@ -101,8 +101,8 @@
                                             <label for="categories">Type</label>
                                             <select id="categories" class="form-control" name="type" required>
                                                 <option value="">Select</option>
-                                                <option value="bug">Error</option>
-                                                <option value="enhancement">Enhancement</option>
+                                                <option value="Error">Error</option>
+                                                <option value="Enhancement">Enhancement</option>
                                             </select>
                                         </div>
                                     </div>

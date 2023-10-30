@@ -77,14 +77,14 @@
                                             <label for="categories">Categories</label>
                                             <select id="categories" class="form-control" name="categories" required>
                                                 <option value="">Select</option>
-                                                <option value="critical">Critical</option>
-                                                <option value="major">Major</option>
-                                                <option value="minor">Minor</option>
+                                                <option value="Critical">Critical</option>
+                                                <option value="Major">Major</option>
+                                                <option value="Minor">Minor</option>
                                             </select>
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-12 mb-3">
+                                    <!-- <div class="col-md-6 col-12 mb-3">
                                         <div class="form-group">
                                             <label for="categories">Status</label>
                                             <select id="categories" class="form-control" name="status" required>
@@ -94,16 +94,16 @@
                                                 <option value="Resolved">Resolved</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="col-md-6 col-12 mb-3">
                                         <div class="form-group">
                                             <label for="categories">Type</label>
                                             <select id="categories" class="form-control" name="type" required>
                                                 <option value="">Select</option>
-                                                <option value="bug">Bug</option>
-                                                <option value="enhancement">Enhancement</option>
-                                                <option value="feature request">Feature Request</option>
+                                                <option value="Error">Error</option>
+                                                <option value="Enhancement">Enhancement</option>
+                                                <!-- <option value="feature request">Feature Request</option> -->
                                             </select>
                                         </div>
                                     </div>

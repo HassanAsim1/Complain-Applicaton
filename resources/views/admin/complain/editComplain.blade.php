@@ -102,9 +102,9 @@
                                             <label for="categories">Type</label>
                                             <select id="categories" class="form-control" name="type" required>
                                                 <option value="{{$complain->type}}">{{$complain->type}}</option>
-                                                <option value="bug">Bug</option>
+                                                <option value="Error">Error</option>
                                                 <option value="enhancement">Enhancement</option>
-                                                <option value="feature request">Feature Request</option>
+                                                <!-- <option value="feature request">Feature Request</option> -->
                                             </select>
                                         </div>
                                     </div>
