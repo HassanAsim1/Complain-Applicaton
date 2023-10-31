@@ -23,5 +23,21 @@ class admincontroller extends Controller
         $data = User::all();
         return view('admin.complain.view_user', compact('data'));
     }
+    public function editUser(){
+        $user = User::where('id', auth()->user()->id)->first();
+        return view('admin.complain.editUser',compact('user'));
+    }
+    public function editUserData(Request $request){
+        try {
+            $data = User::where('id', auth()->user()->id)->first();
+            $data->name = $request->name;
+            $data->email = $request->email;
+            $data->save();
+            
+            return redirect()->back()->with('success', 'User Updated Successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred while updating the user.');
+        }        
+    }
     
 }

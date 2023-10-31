@@ -85,7 +85,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-12 mb-3">
+                                   {{-- <div class="col-md-6 col-12 mb-3">
                                         <div class="form-group">
                                             <label for="categories">Status</label>
                                             <select id="categories" class="form-control" name="status" required>
@@ -95,7 +95,7 @@
                                                 <option value="Resolved">Resolved</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="col-md-6 col-12 mb-3">
                                         <div class="form-group">

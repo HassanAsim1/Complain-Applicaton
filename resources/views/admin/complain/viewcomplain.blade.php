@@ -66,7 +66,7 @@
                                                 <th>Type</th>
                                                 <th>categories</th>
                                                 <th>Developer</th>
-                                                <th>status</th>
+                                                <!-- <th>status</th> -->
                                                 <th>file</th>
                                                 <th>Action</th>
                                             </tr>
@@ -86,7 +86,7 @@
                                                     {{getname($complain->developer_id)}}
                                                     @endif
                                                 </td>
-                                                <td>
+                                                {{-- <td>
                                                     @if($complain->status == 'Open')
                                                     <span class="badge badge-pill badge-light-primary mr-1">{{$complain->status}}</span>
                                                     @elseif($complain->status == 'In progress')
@@ -94,7 +94,7 @@
                                                     @else
                                                     <span class="badge badge-pill badge-light-success mr-1">{{$complain->status}}</span>
                                                     @endif
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     <div class="avatar-group">
                                                         <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Lilian Nenez">
@@ -107,8 +107,8 @@
                                                  <a href="{{url('edit-complaint/'.$complain->id)}}">
                                                     <button class="btn btn-sm btn-primary">Edit</button>
                                                     </a>
-                                                    <a  onclick="confirmDelete({{ $complain->id }})">
-                                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                                    <a onclick="confirmDelete({{ $complain->id }})">
+                                                        <button class="btn btn-sm btn-danger" style="margin-top:2px;">Delete</button>
                                                     </a>
                                                 </td>
                                             </tr>

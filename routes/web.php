@@ -58,3 +58,7 @@ Route::middleware(['developer'])->group(function () {
 
 });
 
+
+Route::get('admin/edit-user', [admincontroller::class, 'editUser'])->name('editUser');
+Route::post('admin/edit-user', [admincontroller::class, 'editUserData'])->name('editUserData');
+

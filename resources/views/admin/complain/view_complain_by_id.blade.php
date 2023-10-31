@@ -149,7 +149,7 @@
                 </section>
             </div>
             @else
-            <span class="badge badge-danger">Complaint no more Exist.</span>
+            <span class="badge badge-danger">Ticket no more Exist.</span>
             @endif
             </div>
         </div>
