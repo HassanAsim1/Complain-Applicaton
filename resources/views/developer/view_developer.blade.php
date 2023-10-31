@@ -102,13 +102,11 @@
                                                 </td> --}}
                                                 <td>
                                                     <div class="avatar-group">
-                                                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0">
-                                                            <a href="{{ asset('storage/' . $complain->image) }}" download>
-                                                                <img src="{{ asset('storage/' . $complain->image) }}" alt="Avatar" height="26" width="26" download/>
+                                                            <a href="{{ asset('storage/' . $complain->image) }}" target="_blank" data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0">
+                                                                <img src="{{ asset('storage/' . $complain->image) }}" alt="Avatar" height="26" width="26" download />
                                                             </a>
                                                         </div>
-                                                    </div>
-                                                </td>
+                                                    </td>
                                                 <!-- <td><span class="badge badge-pill badge-light-primary mr-1">Active</span></td> -->
                                                 <td>
                                                     @if($complain->status == 'Resolved')
