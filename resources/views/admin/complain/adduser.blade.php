@@ -75,7 +75,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
                                             <label for="description">Password*</label>
-                                            <input type="password" id="password" class="form-control" placeholder="password" name="password" required>
+                                            <input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
                                         </div>
                                     </div>
 

@@ -66,7 +66,7 @@
                                                 <th>Type</th>
                                                 <th>categories</th>
                                                 <th>Developer</th>
-                                                <th>status</th>
+                                                <!-- <th>status</th> -->
                                                 <th>file</th>
                                                 <th>Action</th>
                                             </tr>
@@ -76,11 +76,22 @@
                                             @foreach($members as $complain)
                                                 <td>{{$complain->id}}</td>
                                                 <td>{{$complain->title}}</td>
-                                                <td>{{$complain->description}}</td>
+                                                <td>
+                                                    <?php
+                                                    $description = $complain->description;
+                                                    $words = explode(' ', $description);
+                                                    $firstTwoWords = implode(' ', array_slice($words, 0, 2));
+                                                    $remainingWords = implode(' ', array_slice($words, 2));
+                                                    ?>
+                                                    {{ $firstTwoWords }}
+                                                    @if (strlen($remainingWords) > 0)
+                                                        <a class="outline-primary" data-toggle="tooltip" data-original-title="{{ $description }}" href="">more info</a>
+                                                    @endif
+                                                </td>
                                                 <td>{{$complain->type}}</td>
                                                 <td><span class="badge badge-pill badge-light-primary mr-1">{{$complain->categories}}</span></td>
                                                 <td>{{getname($complain->developer_id)}}</td>
-                                                <td>
+                                                {{-- <td>
                                                     @if($complain->status == 'Open')
                                                     <span class="badge badge-pill badge-light-primary mr-1">{{$complain->status}}</span>
                                                     @elseif($complain->status == 'In progress')
@@ -88,10 +99,10 @@
                                                     @else
                                                     <span class="badge badge-pill badge-light-success mr-1">{{$complain->status}}</span>
                                                     @endif
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     <div class="avatar-group">
-                                                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Lilian Nenez">
+                                                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0">
                                                             <a href="{{ asset('storage/' . $complain->image) }}" download>
                                                                 <img src="{{ asset('storage/' . $complain->image) }}" alt="Avatar" height="26" width="26" download/>
                                                             </a>

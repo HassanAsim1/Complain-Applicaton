@@ -38,6 +38,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('edit-complaint/{id}', [complaincontroller::class, 'edit_complaint']);
     Route::post('admin/edit-complain', [complaincontroller::class, 'edit_complaint_store']);
     Route::post('admin/add-user', [UserController::class, 'developerRegister'])->name('developerRegister');
+    Route::post('assignDeveloper', [admincontroller::class, 'assignDeveloper']);
 
 });
 
@@ -59,6 +60,7 @@ Route::middleware(['developer'])->group(function () {
 });
 
 
-Route::get('admin/edit-user', [admincontroller::class, 'editUser'])->name('editUser');
-Route::post('admin/edit-user', [admincontroller::class, 'editUserData'])->name('editUserData');
-
+Route::middleware(['editProfile'])->group(function () {
+    Route::get('admin/edit-user', [admincontroller::class, 'editUser'])->name('editUser');
+    Route::post('admin/edit-user', [admincontroller::class, 'editUserData'])->name('editUserData');
+});

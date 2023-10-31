@@ -34,5 +34,9 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
     <!-- END: Custom CSS-->
-
+    <style>
+        .tooltip-inner {
+            font-size: 16px; /* Adjust the font size as needed */
+        }
+    </style>
 </head>

@@ -16,7 +16,8 @@ class complaincontroller extends Controller
     {
         if(auth()->user()->role  == 'admin'){
             $data = complain :: all();
-            return view('admin.complain.viewcomplain',['members'=>$data]);
+            $developer = User::where('role','developer')->get();
+            return view('admin.complain.viewcomplain',['members'=>$data], compact('developer'));
         }
         elseif(auth()->user()->role  == 'developer'){
             $data = complain :: where('developer_id',auth()->user()->id)->get();
@@ -126,7 +127,6 @@ class complaincontroller extends Controller
         }
 
         $complaint = Complain::where('id',$id)->first(); 
-
         return view('admin.complain.view_complain_by_id',compact('complaint'));
     }
     public function complete_complain($id){
@@ -177,7 +177,9 @@ class complaincontroller extends Controller
             $complain->categories = $request->categories;
             $complain->status = $request->status;
             $complain->type = $request->type;
-            $complain->client_id = auth()->user()->id;
+            if($complain->client_id == ''){
+                $complain->client_id = auth()->user()->id;
+            }
             if(auth()->user()->role == 'admin'){
                 $complain->assign_by = auth()->user()->id;
             }

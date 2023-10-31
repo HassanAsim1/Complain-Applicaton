@@ -76,15 +76,26 @@
                                             @foreach($members as $complain)
                                                 <td>{{$complain->id}}</td>
                                                 <td>{{$complain->title}}</td>
-                                                <td>{{$complain->description}}</td>
+                                                <td>
+                                                    <?php
+                                                    $description = $complain->description;
+                                                    $words = explode(' ', $description);
+                                                    $firstTwoWords = implode(' ', array_slice($words, 0, 2));
+                                                    $remainingWords = implode(' ', array_slice($words, 2));
+                                                    ?>
+                                                    {{ $firstTwoWords }}
+                                                    @if (strlen($remainingWords) > 0)
+                                                        <a class="outline-primary" data-toggle="tooltip" data-original-title="{{ $description }}" href="">more info</a>
+                                                    @endif
+                                                </td>
                                                 <td>{{$complain->type}}</td>
                                                 <td><span class="badge badge-pill badge-light-primary mr-1">{{$complain->categories}}</span></td>
                                                 <td>
-                                                    @if($complain->developer_id == '')
-                                                    <span class="badge badge-pill badge-light-info mr-1">Not Assign</span>
-                                                    @else
-                                                    {{getname($complain->developer_id)}}
-                                                    @endif
+                                                @if($complain->developer_id == '')
+                                                    <button class="btn btn-sm btn-primary" id="assignBtn" data-toggle="modal" data-target="#AssignForm" data-complaint-id="{{$complain->id}}">Assign</button>
+                                                @else
+                                                    {{ empty($complain->developer_id) ? 'Assign' : getname($complain->developer_id) }}
+                                                @endif
                                                 </td>
                                                 {{-- <td>
                                                     @if($complain->status == 'Open')
@@ -97,7 +108,7 @@
                                                 </td> --}}
                                                 <td>
                                                     <div class="avatar-group">
-                                                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0" data-original-title="Lilian Nenez">
+                                                        <div data-toggle="tooltip" data-popup="tooltip-custom" data-placement="top" title="" class="avatar pull-up my-0">
                                                             <img src="{{ asset('storage/' . $complain->image) }}" alt="Avatar" height="26" width="26" download/>
                                                         </div>
                                                     </div>
@@ -126,7 +137,52 @@
         </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade text-left" id="AssignForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="{{url('assignDeveloper')}}"></form>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel33">Assign Developer Form</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{url('assignDeveloper')}}" method="POST">
+                    @csrf
+                    <div class="modal-body">
+                        <label>Complaint Id:</label>
+                        <div class="form-group">
+                            <input type="text" placeholder="Complaint Id" id="assignComplaintId" name="complaintId" class="form-control" readonly/>
+                        </div>
 
+                        <label>Developers: </label>
+                        <div class="form-group">
+                            <select class="form-control" name="developerId">
+                                @foreach($developer as $user)
+                                <option value="{{$user->id}}">{{getname($user->id)}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Assign</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('#assignBtn').on('click', function() {
+            // Get the complaint ID from the data attribute
+            var complaintId = $(this).data('complaint-id');
+            
+            // Set the complaint ID in the hidden input field
+            $('#assignComplaintId').val(complaintId);
+        });
+    </script>                                               
     <script>
     function confirmDelete(complainId) {
         var confirmation = confirm("Are you sure you want to delete this item?");

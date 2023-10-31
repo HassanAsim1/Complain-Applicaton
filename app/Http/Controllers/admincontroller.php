@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\complain;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class admincontroller extends Controller
 {
@@ -32,12 +33,27 @@ class admincontroller extends Controller
             $data = User::where('id', auth()->user()->id)->first();
             $data->name = $request->name;
             $data->email = $request->email;
+            if(!empty($request->oldPassword) && !Hash::check($request->oldPassword, $data->password)){
+                return redirect()->back()->with('error', 'Old Password not matched.');
+            }
+            // Check if the old password is provided and if it matches the current password
+            if (!empty($request->oldPassword) && Hash::check($request->oldPassword, $data->password)) {
+                $data->password = Hash::make($request->newPassword);
+            }
+            
             $data->save();
             
             return redirect()->back()->with('success', 'User Updated Successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred while updating the user.');
-        }        
+        }       
+    }
+    public function assignDeveloper(Request $request){
+        $data = complain::where('id',$request->complaintId)->first();
+        $data->developer_id = $request->developerId;
+        $data->save();
+
+        return redirect()->back()->with('success', 'Developer Assigned Successfully');
     }
     
 }

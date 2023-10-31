@@ -71,6 +71,20 @@
                                             <input type="email" id="email" class="form-control" placeholder="Email" value="{{auth()->user()->email}}"  name="email" required>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="title">Old Password*</label>
+                                            <input type="password" id="title" class="form-control" placeholder="Old Password" name="oldPassword"  required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="description">New Password*</label>
+                                            <input type="password" id="email" class="form-control" placeholder="New Password"  name="newPassword" required>
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <button type="submit" class="btn btn-primary mr-1 waves-effect waves-float waves-light">Submit</button>
                                         <button type="reset" class="btn btn-outline-secondary waves-effect">Reset</button>
